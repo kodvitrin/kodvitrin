@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080f20">
+  <meta name="description" content="KodVitrin ile işletmen için modern, mobil uyumlu ve şık web siteleri oluştur.">
+  <title>KodVitrin | Dijital Dünyadaki Vitrinin</title>
+
+  <style>
+    :root {
+      --bg: #080f20;
+      --panel: #101b31;
+      --blue: #4f8cff;
+      --cyan: #55d6ff;
+      --white: #f5f8ff;
+      --muted: #a6b4cc;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-wrap: break-word;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8,15,32,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .menu-button {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 7px 12px;
+      border-radius: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 19px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: linear-gradient(120deg, var(--blue), #685cff);
+      color: white;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: .9;
+    }
+
+    .button-outline {
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .hero {
+      padding: 105px 0 95px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(55,110,255,.20), transparent 60%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid rgba(79,140,255,.35);
+      background: rgba(79,140,255,.09);
+      border-radius: 50px;
+      color: var(--cyan);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: auto;
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 24px auto 30px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .trust {
+      margin-top: 40px;
+      color: #8799b6;
+      font-size: 13px;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(29px, 5vw, 42px);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 25px;
+      background: linear-gradient(145deg, #111d34, #0c1528);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(79,140,255,.6);
+    }
+
+    .icon-box {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: rgba(79,140,255,.14);
+      color: var(--cyan);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .portfolio-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .preview-art {
+      height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      padding: 18px;
+    }
+
+    .preview-art strong {
+      font-size: 27px;
+      letter-spacing: -1px;
+    }
+
+    .preview-art small {
+      font-size: 12px;
+    }
+
+    .auto {
+      background: linear-gradient(135deg, #152c49, #245a87);
+    }
+
+    .coffee {
+      background: linear-gradient(135deg, #513626, #a66d43);
+    }
+
+    .studio {
+      background: linear-gradient(135deg, #3c245f, #a05291);
+    }
+
+    .portfolio-info {
+      padding: 22px;
+    }
+
+    .portfolio-info p {
+      margin: 8px 0 18px;
+    }
+
+    .text-link {
+      color: var(--cyan);
+      background: none;
+      border: none;
+      font-weight: 700;
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-top: 68px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      position: absolute;
+      top: 17px;
+      left: 25px;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .contact-panel {
+      padding: 48px 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at top right, rgba(79,140,255,.18), transparent 55%),
+        var(--panel);
+      text-align: center;
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.2;
+    }
+
+    .contact-panel p {
+      max-width: 570px;
+      margin: 17px auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 70px;
+      padding: 27px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,.78);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(650px, 100%);
+      max-height: 85vh;
+      overflow: auto;
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #101b31;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .close-modal {
+      background: transparent;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 20px;
+    }
+
+    .modal-content {
+      color: var(--muted);
+    }
+
+    .modal-content h3 {
+      color: white;
+      margin: 20px 0 8px;
+    }
+
+    .modal-content .button {
+      margin-top: 22px;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 22px 5%;
+        background: #0b1426;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 17px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 75px 0;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+
+      .card:hover {
+        transform: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#anasayfa" aria-label="KodVitrin ana sayfa">
+        Kod<span>Vitrin</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#projeler">Örnek Tasarımlar</a>
+        <a href="#surec">Nasıl Çalışır?</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <a class="button nav-cta instagram-link"
+         href="https://www.instagram.com/kodvitrin/"
+         target="_blank" rel="noopener noreferrer">
+        Instagram ↗
+      </a>
+
+      <button class="menu-button" id="menuButton"
+              type="button" aria-label="Menüyü aç"
+              aria-expanded="false">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="anasayfa">
+      <div class="container">
+        <span class="eyebrow">Dijital dünyada yeni bir başlangıç</span>
+
+        <h1>
+          İşletmen için<br>
+          <span class="gradient-text">dijital bir vitrin.</span>
+        </h1>
+
+        <p>
+          Markanı internette öne çıkaran modern, şık ve mobil uyumlu
+          web siteleriyle dijital dünyada yerini al.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#projeler">Tasarımları keşfet ↗</a>
+          <a class="button button-outline" href="#hizmetler">
+            Hizmetleri incele
+          </a>
+        </div>
+
+        <div class="trust">
+          Modern tasarım · Mobil uyumluluk · Özgün görünüm
+        </div>
+      </div>
+    </section>
+
+    <section id="hizmetler">
+      <div class="container">
+        <div class="section-heading">
+          <h2>İşletmeni <span class="gradient-text">öne çıkar.</span></h2>
+          <p>
+            İnternette güçlü bir ilk izlenim bırakman için
+            ihtiyacın olan dijital çözümler.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon-box">⌘</div>
+            <h3>Web Tasarımı</h3>
+            <p>
+              Markanın tarzına uygun, düzenli ve modern web sitesi
+              tasarımları.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">▣</div>
+            <h3>Mobil Uyumluluk</h3>
+            <p>
+              Telefon, tablet ve bilgisayarlarda uyumlu görünen
+              responsive sayfalar.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">✦</div>
+            <h3>Dijital İşletme Vitrini</h3>
+            <p>
+              Hizmetlerini, projelerini ve iletişim bilgilerini
+              tek bir yerde sergile.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projeler">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Örnek <span class="gradient-text">tasarımlar.</span></h2>
+          <p>
+            Farklı işletme türleri için hazırlanan konsept tasarımları
+            incele. Bunlar örnek çalışmalardır.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card portfolio-card">
+            <div class="preview-art auto">
+              <small>AUTOCARE • OTOMOTİV</small>
+              <strong>DRIVE BETTER.</strong>
+              <small>Aracına hak ettiği özen.</small>
+            </div>
+            <div class="portfolio-info">
+              <h3>AutoCare</h3>
+              <p>Oto bakım ve otomotiv işletmeleri için konsept.</p>
+              <button class="text-link demo-button"
+                      type="button" data-demo="auto">
+                Önizlemeyi aç ↗
+              </button>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="preview-art coffee">
+              <small>DAILY COFFEE • KAFE</small>
+              <strong>Take a break.</strong>
+              <small>Kahvenin güzel hâli.</small>
+            </div>
+            <div class="portfolio-info">
+              <h3>Daily Coffee</h3>
+              <p>Kafeler ve kahve markaları için konsept.</p>
+              <button class="text-link demo-button"
+                      type="button" data-demo="coffee">
+                Önizlemeyi aç ↗
+              </button>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="preview-art studio">
+              <small>MODERN STUDIO • TASARIM</small>
+              <strong>Think different.</strong>
+              <small>Fikirden tasarıma.</small>
+            </div>
+            <div class="portfolio-info">
+              <h3>Modern Studio</h3>
+              <p>Yaratıcı ekipler ve stüdyolar için konsept.</p>
+              <button class="text-link demo-button"
+                      type="button" data-demo="studio">
+                Önizlemeyi aç ↗
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="surec">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Nasıl <span class="gradient-text">çalışıyoruz?</span></h2>
+          <p>Fikirden web sitesine, anlaşılır üç adım.</p>
+        </div>
+
+        <div class="grid steps">
+          <article class="card step">
+            <h3>İhtiyacını tanıyalım</h3>
+            <p>İşletmeni, hedefini ve istediğin tasarımı belirleyelim.</p>
+          </article>
+
+          <article class="card step">
+            <h3>Tasarımı hazırlayalım</h3>
+            <p>İhtiyacına uygun sayfa yapısını ve görünümü oluşturalım.</p>
+          </article>
+
+          <article class="card step">
+            <h3>Yayına hazırlayalım</h3>
+            <p>Kontrolleri tamamlayıp yayınlama aşamasına geçelim.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="container">
+        <div class="contact-panel">
+          <span class="eyebrow">Birlikte başlayalım</span>
+          <h2>Markanın dijital <span class="gradient-text">hikâyesi</span></h2>
+          <p>
+            Web sitesi fikrini konuşmak ve örnek tasarımları incelemek
+            için KodVitrin Instagram hesabına ulaş.
+          </p>
+          <a class="button instagram-link"
+             href="https://www.instagram.com/kodvitrin/"
+             target="_blank" rel="noopener noreferrer">
+            Instagram üzerinden ulaş ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="logo" href="#anasayfa">Kod<span>Vitrin</span></a>
+      <p>© <span id="year"></span> KodVitrin. Tüm hakları saklıdır.</p>
+      <a class="instagram-link"
+         href="https://www.instagram.com/kodvitrin/"
+         target="_blank" rel="noopener noreferrer">
+        Instagram ↗
+      </a>
+    </div>
+  </footer>
+
+  <div class="modal" id="demoModal"
+       role="dialog" aria-modal="true"
+       aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-top">
+        <h2 id="modalTitle">Demo önizlemesi</h2>
+        <button class="close-modal" id="closeModal"
+                type="button" aria-label="Pencereyi kapat">
+          ×
+        </button>
+      </div>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    const modal = document.getElementById("demoModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("show");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("show");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    const demos = {
+      auto: {
+        title: "AutoCare | Otomotiv konsepti",
+        heading: "Aracına hak ettiği özen.",
+        description:
+          "Bu örnek tasarım oto bakım, araç temizliği ve otomotiv hizmetlerini tanıtmak için hazırlanmış bir konsepttir.",
+        services: ["Araç bakım hizmetleri", "Hizmet tanıtımı", "İletişim alanı"]
+      },
+      coffee: {
+        title: "Daily Coffee | Kafe konsepti",
+        heading: "Kahveye güzel bir mola.",
+        description:
+          "Bu örnek tasarım kafe, kahve dükkânı ve yiyecek işletmelerini tanıtmak için hazırlanmış bir konsepttir.",
+        services: ["Menü tanıtımı", "Mekân bilgileri", "İletişim alanı"]
+      },
+      studio: {
+        title: "Modern Studio | Tasarım konsepti",
+        heading: "Fikirden tasarıma.",
+        description:
+          "Bu örnek tasarım yaratıcı stüdyoların ve dijital hizmetlerin sunulması için hazırlanmış bir konsepttir.",
+        services: ["Proje sunumu", "Hizmet tanıtımı", "İletişim alanı"]
+      }
+    };
+
+    document.querySelectorAll(".demo-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const demo = demos[button.dataset.demo];
+
+        if (!demo) return;
+
+        modalTitle.textContent = demo.title;
+
+        const heading = document.createElement("h3");
+        heading.textContent = demo.heading;
+
+        const description = document.createElement("p");
+        description.textContent = demo.description;
+
+        const list = document.createElement("ul");
+        list.style.margin = "16px 0 0 20px";
+
+        demo.services.forEach(function (service) {
+          const item = document.createElement("li");
+          item.textContent = service;
+          list.appendChild(item);
+        });
+
+        modalContent.replaceChildren(heading, description, list);
+        modal.classList.add("open");
+        closeModal.focus();
+      });
+    });
+
+    function hideModal() {
+      modal.classList.remove("open");
+    }
+
+    closeModal.addEventListener("click", hideModal);
+
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        hideModal();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        hideModal();
+      }
+    });
+
+    /*
+      Instagram bağlantıları standart HTTPS adresidir.
+      Bazı uygulama içi önizleme tarayıcıları bu adresi
+      Instagram uygulamasına yönlendirebilir.
+    */
+  </script>
+</body>
+</html>
